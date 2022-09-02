@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -54,8 +55,11 @@ public class Goal {
 	@Column(name="GOALCURRAMOUNT")
 	private Double currAmount;
 
-	
-	
+	@NotNull
+	@Column(name="USER")
+	private String user;
+
+
 	public Goal() {
 		super();
 	}
@@ -63,7 +67,7 @@ public class Goal {
 	
 	
 	public Goal(int id, String title, String description, String imageSrc, Date targetDate, Double goalAmount,
-			Double currAmount) {
+			Double currAmount,String user) {
 	}
 
 	public Goal(Goal goal) {
@@ -74,6 +78,7 @@ public class Goal {
 		this.targetDate = goal.getTargetDate();
 		this.goalAmount = goal.getGoalAmount();
 		this.currAmount = goal.getCurrAmount();
+		this.user=goal.getUser();
 	}
 
 	public int getId() {
@@ -132,14 +137,29 @@ public class Goal {
 		this.currAmount = currAmount;
 	}
 
+	
+	public String getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "Goal [id=" + id + ", title=" + title + ", description=" + description + ", imageSrc=" + imageSrc
-				+ ", targetDate=" + targetDate + ", goalAmount=" + goalAmount + ", currAmount=" + currAmount + "]";
+				+ ", targetDate=" + targetDate + ", goalAmount=" + goalAmount + ", currAmount=" + currAmount + ", user="
+				+ user + "]";
 	}
-	
+
+
+
+
 	
 	
 	

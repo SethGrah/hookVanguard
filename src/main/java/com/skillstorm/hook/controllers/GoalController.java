@@ -29,9 +29,9 @@ public class GoalController {
 	@Autowired
 	private GoalService goalService;
 	
-	@GetMapping
-	public ResponseEntity<List<Goal>> findAll(){
-		List<Goal> goals = this.goalService.findAll();
+	@GetMapping(path="/user")
+	public ResponseEntity<List<Goal>> findAllByUser(@PathVariable String user){
+		List<Goal> goals = this.goalService.findAllByUser(user);
 		return ResponseEntity.ok(goals);
 	}
 	@GetMapping(path = "/{id}")
