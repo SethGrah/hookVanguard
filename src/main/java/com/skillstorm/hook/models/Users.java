@@ -31,11 +31,15 @@ public class Users {
 	@Column(name="PASSWORD")
 	private String password;
 	
+	@NotNull
+	@Column(name="GOALSCOMPLETED")
+	private int goalsCompleted;
+	
 	public Users() {
 		super();
 	}
 	
-	public Users(@NotBlank String username, @NotBlank String email, @NotBlank String password) {
+	public Users(@NotBlank String username, @NotBlank String email, @NotBlank String password,@NotNull int goalsCompleted) {
 	}
 
 	
@@ -45,6 +49,7 @@ public class Users {
 		this.username = user.getUsername();
 		this.email = user.getEmail();
 		this.password = user.getPassword();
+		this.goalsCompleted= user.getGoalsCompleted();
 	}
 
 	public String getUsername() {
@@ -71,11 +76,20 @@ public class Users {
 		this.password = password;
 	}
 
+	public int getGoalsCompleted() {
+		return goalsCompleted;
+	}
+
+	public void setGoalsCompleted(int goalsCompleted) {
+		this.goalsCompleted = goalsCompleted;
+	}
+
 	@Override
 	public String toString() {
-		return "Users [username=" + username + ", email=" + email + ", password=" + password + "]";
+		return "Users [username=" + username + ", email=" + email + ", password=" + password + ", goalsCompleted="
+				+ goalsCompleted + "]";
 	}
-	
+
 	
 	
 }

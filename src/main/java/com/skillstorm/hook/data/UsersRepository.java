@@ -13,7 +13,9 @@ public interface UsersRepository extends JpaRepository<Users,String> {
 	@Query("from Users u where u.username like CONCAT('%',:username,'%') AND u.password like CONCAT ('%',:password,'%')")
 	public Users findByUsernameAndPassword(@Param(value="username") String username,@Param(value="password") String password);
 	
-	@Query("from Users u where u.username like CONCAT('%',:username,'%')")
+
+	
+	@Query("from Users u where u.username =[:username]")
 	public Users findByUsername(@Param(value="username") String username);
 	
 	

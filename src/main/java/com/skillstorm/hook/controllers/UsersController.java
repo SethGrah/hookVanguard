@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,9 +31,19 @@ public class UsersController {
 		return new ResponseEntity<Users>(this.usersService.login(username,password),HttpStatus.ACCEPTED);
 		
 	}
+	@GetMapping(path="/{username}")
+	public ResponseEntity<Users> getUserInfo(@PathVariable String username){
+		return new ResponseEntity<Users>(this.usersService.getUserInfo(username),HttpStatus.ACCEPTED);
+		
+	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Users> save(@RequestBody Users user){
 		return new ResponseEntity<Users>(this.usersService.add(user),HttpStatus.CREATED);
+	}
+	@PutMapping
+	public ResponseEntity<Users> incrementCompletion(@RequestBody Users user){
+		return new ResponseEntity<Users>(this.usersService.increment(user),HttpStatus.CREATED);
 	}
 }

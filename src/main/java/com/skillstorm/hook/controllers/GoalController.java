@@ -29,7 +29,10 @@ public class GoalController {
 	@Autowired
 	private GoalService goalService;
 	
-	@GetMapping(path="/user")
+	
+
+	
+	@GetMapping(path="/user/{user}")
 	public ResponseEntity<List<Goal>> findAllByUser(@PathVariable String user){
 		List<Goal> goals = this.goalService.findAllByUser(user);
 		return ResponseEntity.ok(goals);

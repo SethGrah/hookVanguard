@@ -23,12 +23,35 @@ public class UsersService {
 			return null;
 		}
 	}
+	public Users getUserInfo(String username) {
+		Users userInfo = usersRepository.findByUsername(username);
+		if (userInfo != null) {
+			return userInfo;
+		}else {
+			return null;
+		}
+	}
 	
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Users add(Users user) {
-		Users addedUser = usersRepository.save(user);
-		return addedUser;
+		Users userCheck = usersRepository.findByUsername(user.getUsername());
+		if(userCheck != null) {
+			return null;
+			}else {
+			Users addedUser = usersRepository.save(user);
+			return addedUser;
+		}
 	}
-	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public Users increment(Users user) {
+		Users userCheck = usersRepository.findByUsername(user.getUsername());
+		userCheck.setGoalsCompleted( userCheck.getGoalsCompleted()+1);
+		if(userCheck != null) {
+			Users addedUser = usersRepository.save(userCheck);
+			return addedUser;
+			}else {
+			return null;
+		}
+	}
 }

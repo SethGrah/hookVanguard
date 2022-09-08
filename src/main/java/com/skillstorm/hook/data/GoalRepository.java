@@ -11,8 +11,7 @@ import com.skillstorm.hook.models.Goal;
 
 @Repository
 public interface GoalRepository extends JpaRepository<Goal,Integer> {
-	
-	
+
 	@Query("from Goals g where g.user like CONCAT('%',:user,'%')")
 	public List<Goal> findAllByUser(@Param(value="user") String user);
 	

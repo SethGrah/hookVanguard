@@ -20,7 +20,8 @@ public class GoalService {
 	
 	@Autowired
 	private GoalRepository goalRepository;
-	
+
+
 	public List<Goal> findAllByUser(String user){
 		log.debug("List<Goal> findAllByUser(user)");
 		return this.goalRepository.findAllByUser(user);
